@@ -1,0 +1,30 @@
+branches: {only: [master, develop]}
+sudo: false
+language: python
+python: 3.8
+cache: pip
+
+addons:
+  postgresql: "12"
+  apt:
+    packages:
+    - postgresql-12
+    - postgresql-client-12
+
+matrix:
+  include:
+    - name: Unit tests
+      env: DEBUG=1 DATABASE_URL=postgres:///django_etuovi SECRET_KEY=topsecret123
+      services: [postgresql]
+      install: pip install -r requirements-test.txt
+      before_script:
+        - pip install -e .
+      script: pytest -ra -vv --doctest-modules --cov=.
+      after_success: pip install codecov && codecov
+
+    - name: Style
+      install: pip install -r requirements-test.txt
+      script:
+        - black --check .
+        - flake8
+        - isort . -c
