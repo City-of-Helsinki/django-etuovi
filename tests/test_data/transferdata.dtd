@@ -1,0 +1,42 @@
+<!ELEMENT transferData (filter*, transferGroup*, error*, source*)>
+<!ATTLIST transferData
+    version CDATA "1.0"
+>
+
+<!ELEMENT transferGroup (filter*, item*, error*, source*)>
+<!ATTLIST transferGroup
+    name CDATA #REQUIRED
+    type (update|all|conditional) "update"
+    sourceGroups CDATA #IMPLIED
+>
+
+<!ELEMENT item (filter*, property*, error*, source*)>
+<!ATTLIST item
+    type (update|remove) "update"
+    itemType CDATA #REQUIRED
+    locale CDATA #IMPLIED
+    id CDATA #IMPLIED
+    sourceGroup CDATA #IMPLIED
+    dataGroup CDATA #IMPLIED
+>
+
+<!ELEMENT property ((property* | value), error*, source*)>
+<!ATTLIST property
+    name CDATA #IMPLIED
+>
+
+<!ELEMENT value (#PCDATA)>
+
+<!ELEMENT filter EMPTY>
+<!ATTLIST filter
+    name CDATA #REQUIRED
+>
+
+<!ELEMENT source (#PCDATA)>
+<!ATTLIST source
+    type CDATA #IMPLIED
+>
+<!ELEMENT error (#PCDATA)>
+<!ATTLIST error
+    code CDATA #IMPLIED
+>
