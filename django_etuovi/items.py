@@ -3,6 +3,7 @@ from decimal import Decimal
 from typing import List
 
 from django_etuovi.enums import (
+    Condition,
     Country,
     HoldingType,
     ItemGroup,
@@ -10,14 +11,17 @@ from django_etuovi.enums import (
     RealtyGroup,
     RealtyImageType,
     RealtyType,
+    TextKey,
+    TextLanguage,
     TradeType,
 )
-from django_etuovi.utils import object_to_etree
 
 
 class BaseClass:
-    def to_etree(self, item_type="update"):
-        return object_to_etree(self, item_type)
+    def to_etree(self):
+        from django_etuovi.utils import object_to_etree
+
+        return object_to_etree(self)
 
 
 @dataclass
@@ -44,24 +48,57 @@ class Image(BaseClass):
 
 
 @dataclass
+class Text(BaseClass):
+    text_key: TextKey
+    text_value: str
+    text_language: TextLanguage
+
+    class Meta:
+        element_name = "text"
+
+
+@dataclass
+class Coordinate(BaseClass):
+    lat: Decimal  # WGS84
+    lon: Decimal  # WGS84
+
+    class Meta:
+        element_name = "coordinate"
+
+
+@dataclass
 class Item(BaseClass):
+    buildyear: int
+    chargesmaintbasemonth: Decimal
+    chargeswater2: Decimal
+    chargeswater2_period: str
+    condition_name: Condition
     country: Country
-    currency_code: str
+    coordinate: List[Coordinate]
+    currency_code: str  # EUR is only supported currency atm.
     cust_itemcode: str
     debtfreeprice: Decimal
+    dgitemcode: str
+    energyclass: str
     holdingtype: HoldingType
     image: List[Image]
     itemgroup: ItemGroup
     extralink: List[ExtraLink]
+    livingaream2: Decimal
+    loclvlid: int  # If coordinate exists, this needs to be 1.
+    locsourceid: int  # If coordinate exists, this needs to be 4.
     postcode: str
     price: Decimal
     quarteroftown: str
     realtygroup: RealtyGroup
+    realtyidentifier: str
     realty_itemgroup: ItemGroup
     realtytype: RealtyType
+    realtyoption: List[str]
     roomcount: int
     street: str
     supplier_source_itemcode: str
+    text: List[Text]
     town: str
     tradetype: TradeType
 
