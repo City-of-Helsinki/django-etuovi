@@ -1,0 +1,10 @@
+autopep8
+black
+Django~=2.2
+factory-boy
+flake8
+isort
+lxml
+pytest
+pytest-cov
+pytest-django
