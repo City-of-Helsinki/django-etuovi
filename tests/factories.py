@@ -24,7 +24,7 @@ class ImageFactory(factory.Factory):
         model = Image
 
     image_desc = fuzzy.FuzzyText()
-    image_realtyimagetype = fuzzy.FuzzyChoice([c.value for c in RealtyImageType])
+    image_realtyimagetype = fuzzy.FuzzyChoice([c for c in RealtyImageType])
     image_seq = fuzzy.FuzzyText()
     image_transfer_id = fuzzy.FuzzyText()
     image_transfer_source = fuzzy.FuzzyText()
@@ -37,16 +37,16 @@ class ExtraLinkFactory(factory.Factory):
 
     link_url = fuzzy.FuzzyText()
     link_urltitle = fuzzy.FuzzyText()
-    linktype_name = fuzzy.FuzzyChoice([c.value for c in LinkType])
+    linktype_name = fuzzy.FuzzyChoice([c for c in LinkType])
 
 
 class TextFactory(factory.Factory):
     class Meta:
         model = Text
 
-    text_key = fuzzy.FuzzyChoice([c.value for c in TextKey])
+    text_key = fuzzy.FuzzyChoice([c for c in TextKey])
     text_value = fuzzy.FuzzyText()
-    text_language = fuzzy.FuzzyChoice([c.value for c in TextLanguage])
+    text_language = fuzzy.FuzzyChoice([c for c in TextLanguage])
 
 
 class CoordinateFactory(factory.Factory):
@@ -67,9 +67,9 @@ class ItemFactory(factory.Factory):
     chargesmaintbasemonth = fuzzy.FuzzyDecimal(0, 99999999999)
     chargeswater2 = fuzzy.FuzzyDecimal(0, 99999999999)
     chargeswater2_period = fuzzy.FuzzyText()
-    condition_name = fuzzy.FuzzyChoice([c.value for c in Condition])
+    condition_name = fuzzy.FuzzyChoice([c for c in Condition])
     coordinate = factory.List([factory.SubFactory(CoordinateFactory)])
-    country = fuzzy.FuzzyChoice([c.value for c in Country])
+    country = fuzzy.FuzzyChoice([c for c in Country])
     currency_code = "EUR"
     cust_itemcode = fuzzy.FuzzyText()
     debtfreeprice = fuzzy.FuzzyDecimal(0, 99999999999)
@@ -77,9 +77,9 @@ class ItemFactory(factory.Factory):
     extralink = factory.List([factory.SubFactory(ExtraLinkFactory) for _ in range(2)])
     floors = fuzzy.FuzzyInteger(0, 9999999999)
     energyclass = fuzzy.FuzzyText(length=10)
-    holdingtype = fuzzy.FuzzyChoice([c.value for c in HoldingType])
+    holdingtype = fuzzy.FuzzyChoice([c for c in HoldingType])
     image = factory.List([factory.SubFactory(ImageFactory) for _ in range(2)])
-    itemgroup = fuzzy.FuzzyChoice([c.value for c in ItemGroup])
+    itemgroup = fuzzy.FuzzyChoice([c for c in ItemGroup])
     livingaream2 = fuzzy.FuzzyDecimal(0, 99999999999)
     loclvlid = 1
     locsourceid = 4
@@ -91,10 +91,10 @@ class ItemFactory(factory.Factory):
     price = fuzzy.FuzzyDecimal(0, 99999999999)
     price_m2 = fuzzy.FuzzyDecimal(0, 99999999999)
     quarteroftown = fuzzy.FuzzyText(length=60)
-    realtygroup = fuzzy.FuzzyChoice([c.value for c in RealtyGroup])
+    realtygroup = fuzzy.FuzzyChoice([c for c in RealtyGroup])
     realtyidentifier = fuzzy.FuzzyText(length=40)
-    realty_itemgroup = fuzzy.FuzzyChoice([c.value for c in ItemGroup])
-    realtytype = fuzzy.FuzzyChoice([c.value for c in RealtyType])
+    realty_itemgroup = fuzzy.FuzzyChoice([c for c in ItemGroup])
+    realtytype = fuzzy.FuzzyChoice([c for c in RealtyType])
     realtyoption = factory.List([fuzzy.FuzzyText() for _ in range(2)])
     rc_lot_renter = fuzzy.FuzzyText()
     rc_zoninginfo = fuzzy.FuzzyText()
@@ -106,5 +106,5 @@ class ItemFactory(factory.Factory):
     supplier_source_itemcode = fuzzy.FuzzyText()
     text = factory.List([factory.SubFactory(TextFactory) for _ in range(2)])
     town = fuzzy.FuzzyText(length=60)
-    tradetype = fuzzy.FuzzyChoice([c.value for c in TradeType])
+    tradetype = fuzzy.FuzzyChoice([c for c in TradeType])
     zoningname = fuzzy.FuzzyText()

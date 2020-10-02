@@ -1,4 +1,5 @@
 from decimal import Decimal
+from enum import Enum
 from typing import Union
 
 from lxml import etree
@@ -27,7 +28,7 @@ def get_root(name: str) -> etree.Element:
 
 
 def create_value_property(
-    key: Union[str, None], value: Union[int, str, Decimal], root: etree.Element
+    key: Union[str, None], value: Union[int, str, Decimal, Enum], root: etree.Element
 ) -> None:
     if key is None:
         property_element = etree.Element("property")
@@ -35,13 +36,15 @@ def create_value_property(
         property_element = etree.Element("property", name=key)
     value_element = etree.Element("value")
     property_element.append(value_element)
+    if isinstance(value, Enum):
+        value = value.value
     # Don't want to stringify None.
     value_element.text = str(value) if value is not None else value
     root.append(property_element)
 
 
 def handle_property(
-    key: Union[str, None], value: Union[int, str, Decimal], root: etree.Element
+    key: Union[str, None], value: Union[int, str, Decimal, Enum], root: etree.Element
 ) -> None:
     if isinstance(value, BaseClass):
         el = value.to_etree()
@@ -52,7 +55,7 @@ def handle_property(
 
 
 def get_property_root(
-    key: str, value: Union[int, str, Decimal], root: etree.Element
+    key: str, value: Union[int, str, Decimal, Enum], root: etree.Element
 ) -> etree.Element:
     if isinstance(value, BaseClass):
         property_name = get_name(value)
