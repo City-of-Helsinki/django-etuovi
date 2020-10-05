@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from datetime import date
 from decimal import Decimal
 from typing import List
 
@@ -69,6 +70,8 @@ class Coordinate(BaseClass):
 @dataclass
 class Item(BaseClass):
     buildyear: int
+    charges_parkingspace: Decimal
+    chargesfinancebasemonth: Decimal
     chargesmaintbasemonth: Decimal
     chargeswater2: Decimal
     chargeswater2_period: str
@@ -80,27 +83,39 @@ class Item(BaseClass):
     debtfreeprice: Decimal
     dgitemcode: str
     energyclass: str
+    extralink: List[ExtraLink]
+    floors: int
     holdingtype: HoldingType
     image: List[Image]
     itemgroup: ItemGroup
-    extralink: List[ExtraLink]
     livingaream2: Decimal
     loclvlid: int  # If coordinate exists, this needs to be 1.
     locsourceid: int  # If coordinate exists, this needs to be 4.
+    lotarea: Decimal
+    lotareaunitcode: str
+    lotholding: str
     postcode: str
+    presentation: str
     price: Decimal
+    price_m2: Decimal
     quarteroftown: str
     realtygroup: RealtyGroup
     realtyidentifier: str
     realty_itemgroup: ItemGroup
     realtytype: RealtyType
     realtyoption: List[str]
+    rc_lot_renter: str
+    rc_zoninginfo: str
+    roof: str
     roomcount: int
+    showingdate: date
+    showingdate2: date
     street: str
     supplier_source_itemcode: str
     text: List[Text]
     town: str
     tradetype: TradeType
+    zoningname: str
 
     class Meta:
         element_name = "item"

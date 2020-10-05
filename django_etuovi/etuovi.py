@@ -36,7 +36,7 @@ def get_session() -> FTP:
 def send_items(items: List[BaseClass]) -> None:
     element_tree = ElementTree(create_element_tree(items))
     filename = get_filename()
-    element_tree.write(filename, encoding="utf-8", xml_declaration=True)
+    element_tree.write(filename, encoding="ISO-8859-1", xml_declaration=True)
 
     session = get_session()
     session.storbinary("{}.temp".format(filename), open(filename, "rb"))
