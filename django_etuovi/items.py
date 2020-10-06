@@ -80,8 +80,8 @@ class Item(BaseClass):
     coordinate: List[Coordinate]
     currency_code: str  # EUR is only supported currency atm.
     cust_itemcode: str
-    debtfreeprice: Decimal
     dgitemcode: str
+    debtfreeprice: Decimal
     energyclass: str
     extralink: List[ExtraLink]
     floors: int
@@ -95,7 +95,6 @@ class Item(BaseClass):
     lotareaunitcode: str
     lotholding: str
     postcode: str
-    presentation: str
     price: Decimal
     price_m2: Decimal
     quarteroftown: str
@@ -104,12 +103,10 @@ class Item(BaseClass):
     realty_itemgroup: ItemGroup
     realtytype: RealtyType
     realtyoption: List[str]
-    rc_lot_renter: str
-    rc_zoninginfo: str
-    roof: str
+    rc_parkingspace_count: int
     roomcount: int
     showingdate: date
-    showingdate2: date
+    showing_date2: date
     street: str
     supplier_source_itemcode: str
     text: List[Text]
