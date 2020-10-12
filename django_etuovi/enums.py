@@ -60,7 +60,7 @@ class ItemGroup(Enum):
     RENTAL = "Vuokra-asunnot"
     ESTATE = "Maa- ja metsätilat"
     LOT = "Tontit"
-    NEW_BUILDING = "Uudiskohteet"
+    NEW_HOUSING = "Uudiskohteet"
     CARAGE_OR_OTHER = "Autotallit ja muut"
 
 
@@ -133,7 +133,7 @@ class LinkType(Enum):
     AD_6 = "Mainos 6"
     PDF_PRESENTATION = "PDF -esitteen linkki"
     DETAILED_PRESENTATION = "Tarkempiesittelylinkki"
-    NEW_HOUSE = "Uudiskohdelinkki"
+    NEW_HOUSING = "Uudiskohdelinkki"
     SEARCH_WATCH_AD = "Vahtiviestimainos"
     VIDEO = "Videolinkki"
     VIRTUAL = "Virtuaalilinkki"
@@ -319,3 +319,4 @@ class RealtyOption(Enum):
     NO_SAUNA = "ei saunaa"
     OWN_SAUNA = "oma sauna"
     HOUSING_SAUNA = "taloyhtiössä sauna"
+    YARD = "piha"
