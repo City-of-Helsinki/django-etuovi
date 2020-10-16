@@ -89,7 +89,7 @@ def object_to_etree(obj: BaseClass) -> etree.Element:
     return root
 
 
-def object_to_xml_string(obj: BaseClass, encoding: str = "ISO-8859-1") -> bytes:
+def object_to_xml_string(obj: BaseClass, encoding: str = "UTF-8") -> bytes:
     root = obj.to_etree()
 
     return etree.tostring(

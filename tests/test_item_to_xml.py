@@ -10,7 +10,7 @@ from tests.factories import ItemFactory
 
 def test_all_item_attributes_in_xml_string():
     item = ItemFactory()
-    xml_string = object_to_xml_string(item).decode("ISO-8859-1")
+    xml_string = object_to_xml_string(item).decode("UTF-8")
 
     for key in item.__dict__.keys():
         assert key in xml_string
