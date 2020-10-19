@@ -73,8 +73,7 @@ class Item(BaseClass):
     charges_parkingspace: Decimal
     chargesfinancebasemonth: Decimal
     chargesmaintbasemonth: Decimal
-    chargeswater2: Decimal
-    chargeswater2_period: str
+    chargeswater_period: str
     condition_name: Condition
     country: Country
     coordinate: List[Coordinate]
