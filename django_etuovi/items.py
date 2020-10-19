@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import date
+from datetime import datetime
 from decimal import Decimal
 from typing import List
 
@@ -117,8 +117,8 @@ class Item(BaseClass):
     rc_parkingspace_count: int
     roomcount: int
     scontact: List[Scontact]
-    showingdate: date
-    showing_date2: date
+    showingdate: datetime
+    showing_date2: datetime
     street: str
     supplier_source_itemcode: str
     text: List[Text]

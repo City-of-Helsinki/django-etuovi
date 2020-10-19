@@ -1,6 +1,5 @@
-import datetime
-
 import factory
+from django.utils import timezone
 from factory import fuzzy
 
 from django_etuovi.enums import (
@@ -108,8 +107,8 @@ class ItemFactory(factory.Factory):
     rc_parkingspace_count = fuzzy.FuzzyInteger(0, 9999999999)
     roomcount = fuzzy.FuzzyInteger(0, 9999999999)
     scontact = factory.List([factory.SubFactory(ScontactFactory) for _ in range(2)])
-    showingdate = fuzzy.FuzzyDate(start_date=datetime.date.today())
-    showing_date2 = fuzzy.FuzzyDate(start_date=datetime.date.today())
+    showingdate = fuzzy.FuzzyDateTime(timezone.now())
+    showing_date2 = fuzzy.FuzzyDateTime(timezone.now())
     street = fuzzy.FuzzyText(length=200)
     supplier_source_itemcode = fuzzy.FuzzyText()
     text = factory.List([factory.SubFactory(TextFactory) for _ in range(2)])
