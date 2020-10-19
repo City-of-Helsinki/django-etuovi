@@ -31,6 +31,10 @@ def test_all_item_attributes_in_xml_string():
     for key in item.coordinate[0].__dict__.keys():
         assert key in xml_string
 
+    assert isinstance(item.scontact, list)
+    for key in item.scontact[0].__dict__.keys():
+        assert key in xml_string
+
 
 @override_settings(ETUOVI_TRANSFER_ID="test")
 def test_validate_xml_against_dtd():

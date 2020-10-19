@@ -68,6 +68,19 @@ class Coordinate(BaseClass):
 
 
 @dataclass
+class Scontact(BaseClass):
+    scontact_name: str
+    scontact_title: str
+    scontact_itempage_email: str
+    scontact_mobilephone: str
+    scontact_phone: str
+    scontact_image_url: str
+
+    class Meta:
+        element_name = "scontact"
+
+
+@dataclass
 class Item(BaseClass):
     buildyear: int
     charges_parkingspace: Decimal
@@ -79,7 +92,6 @@ class Item(BaseClass):
     coordinate: List[Coordinate]
     currency_code: str  # EUR is only supported currency atm.
     cust_itemcode: str
-    dgitemcode: str
     debtfreeprice: Decimal
     energyclass: str
     extralink: List[ExtraLink]
@@ -104,6 +116,7 @@ class Item(BaseClass):
     realtyoption: List[str]
     rc_parkingspace_count: int
     roomcount: int
+    scontact: List[Scontact]
     showingdate: date
     showing_date2: date
     street: str

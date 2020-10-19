@@ -16,7 +16,7 @@ from django_etuovi.enums import (
     TextLanguage,
     TradeType,
 )
-from django_etuovi.items import Coordinate, ExtraLink, Image, Item, Text
+from django_etuovi.items import Coordinate, ExtraLink, Image, Item, Scontact, Text
 
 
 class ImageFactory(factory.Factory):
@@ -57,6 +57,18 @@ class CoordinateFactory(factory.Factory):
     lon = fuzzy.FuzzyDecimal(-180, 180)
 
 
+class ScontactFactory(factory.Factory):
+    class Meta:
+        model = Scontact
+
+    scontact_name = fuzzy.FuzzyText()
+    scontact_title = fuzzy.FuzzyText()
+    scontact_itempage_email = fuzzy.FuzzyText()
+    scontact_mobilephone = fuzzy.FuzzyText()
+    scontact_phone = fuzzy.FuzzyText()
+    scontact_image_url = fuzzy.FuzzyText()
+
+
 class ItemFactory(factory.Factory):
     class Meta:
         model = Item
@@ -71,7 +83,6 @@ class ItemFactory(factory.Factory):
     country = fuzzy.FuzzyChoice([c for c in Country])
     currency_code = "EUR"
     cust_itemcode = fuzzy.FuzzyText()
-    dgitemcode = fuzzy.FuzzyText(length=240)
     debtfreeprice = fuzzy.FuzzyDecimal(0, 99999999999)
     extralink = factory.List([factory.SubFactory(ExtraLinkFactory) for _ in range(2)])
     floors = fuzzy.FuzzyInteger(0, 9999999999)
@@ -96,6 +107,7 @@ class ItemFactory(factory.Factory):
     realtyoption = factory.List([fuzzy.FuzzyText() for _ in range(2)])
     rc_parkingspace_count = fuzzy.FuzzyInteger(0, 9999999999)
     roomcount = fuzzy.FuzzyInteger(0, 9999999999)
+    scontact = factory.List([factory.SubFactory(ScontactFactory) for _ in range(2)])
     showingdate = fuzzy.FuzzyDate(start_date=datetime.date.today())
     showing_date2 = fuzzy.FuzzyDate(start_date=datetime.date.today())
     street = fuzzy.FuzzyText(length=200)
