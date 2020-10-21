@@ -1,3 +1,4 @@
+from datetime import datetime
 from decimal import Decimal
 from enum import Enum
 from typing import Union
@@ -28,7 +29,9 @@ def get_root(name: str) -> etree.Element:
 
 
 def create_value_property(
-    key: Union[str, None], value: Union[int, str, Decimal, Enum], root: etree.Element
+    key: Union[str, None],
+    value: Union[int, str, datetime, Decimal, Enum],
+    root: etree.Element,
 ) -> None:
     if key is None:
         property_element = etree.Element("property")
@@ -38,6 +41,8 @@ def create_value_property(
     property_element.append(value_element)
     if isinstance(value, Enum):
         value = value.value
+    elif isinstance(value, datetime):
+        value = value.strftime("%d.%m.%Y %H:%M")
     # Don't want to stringify None.
     value_element.text = str(value) if value is not None else value
     root.append(property_element)
@@ -89,7 +94,7 @@ def object_to_etree(obj: BaseClass) -> etree.Element:
     return root
 
 
-def object_to_xml_string(obj: BaseClass, encoding: str = "ISO-8859-1") -> bytes:
+def object_to_xml_string(obj: BaseClass, encoding: str = "UTF-8") -> bytes:
     root = obj.to_etree()
 
     return etree.tostring(
