@@ -20,7 +20,7 @@ from django_etuovi.enums import (
 
 class BaseClass:
     def to_etree(self):
-        from django_etuovi.utils import object_to_etree
+        from django_etuovi.utils.xml import object_to_etree
 
         return object_to_etree(self)
 
