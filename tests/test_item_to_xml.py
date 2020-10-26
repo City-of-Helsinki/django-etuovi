@@ -4,13 +4,13 @@ from django.test import override_settings
 from lxml import etree
 
 from django_etuovi.etuovi import create_element_tree
-from django_etuovi.utils import object_to_xml_string
+from django_etuovi.utils.xml import object_to_xml_string
 from tests.factories import ItemFactory
 
 
 def test_all_item_attributes_in_xml_string():
     item = ItemFactory()
-    xml_string = object_to_xml_string(item).decode("ISO-8859-1")
+    xml_string = object_to_xml_string(item).decode("UTF-8")
 
     for key in item.__dict__.keys():
         assert key in xml_string
@@ -29,6 +29,10 @@ def test_all_item_attributes_in_xml_string():
 
     assert isinstance(item.coordinate, list)
     for key in item.coordinate[0].__dict__.keys():
+        assert key in xml_string
+
+    assert isinstance(item.scontact, list)
+    for key in item.scontact[0].__dict__.keys():
         assert key in xml_string
 
 

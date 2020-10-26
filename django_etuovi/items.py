@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from datetime import date
+from datetime import datetime
 from decimal import Decimal
-from typing import List
+from typing import List, Optional
 
 from django_etuovi.enums import (
     Condition,
@@ -20,7 +20,7 @@ from django_etuovi.enums import (
 
 class BaseClass:
     def to_etree(self):
-        from django_etuovi.utils import object_to_etree
+        from django_etuovi.utils.xml import object_to_etree
 
         return object_to_etree(self)
 
@@ -28,8 +28,8 @@ class BaseClass:
 @dataclass
 class ExtraLink(BaseClass):
     link_url: str
-    link_urltitle: str
     linktype_name: LinkType
+    link_urltitle: Optional[str] = None
 
     class Meta:
         element_name = "extralink"
@@ -37,12 +37,12 @@ class ExtraLink(BaseClass):
 
 @dataclass
 class Image(BaseClass):
-    image_desc: str
     image_realtyimagetype: RealtyImageType
     image_seq: str
     image_transfer_id: str
     image_transfer_source: str
     image_url: str
+    image_desc: Optional[str] = None
 
     class Meta:
         element_name = "image"
@@ -68,51 +68,63 @@ class Coordinate(BaseClass):
 
 
 @dataclass
+class Scontact(BaseClass):
+    scontact_name: Optional[str] = None
+    scontact_title: Optional[str] = None
+    scontact_itempage_email: Optional[str] = None
+    scontact_mobilephone: Optional[str] = None
+    scontact_phone: Optional[str] = None
+    scontact_image_url: Optional[str] = None
+
+    class Meta:
+        element_name = "scontact"
+
+
+@dataclass
 class Item(BaseClass):
-    buildyear: int
-    charges_parkingspace: Decimal
-    chargesfinancebasemonth: Decimal
-    chargesmaintbasemonth: Decimal
-    chargeswater2: Decimal
-    chargeswater2_period: str
-    condition_name: Condition
     country: Country
-    coordinate: List[Coordinate]
-    currency_code: str  # EUR is only supported currency atm.
     cust_itemcode: str
-    dgitemcode: str
     debtfreeprice: Decimal
-    energyclass: str
-    extralink: List[ExtraLink]
-    floors: int
     holdingtype: HoldingType
-    image: List[Image]
     itemgroup: ItemGroup
-    livingaream2: Decimal
-    loclvlid: int  # If coordinate exists, this needs to be 1.
-    locsourceid: int  # If coordinate exists, this needs to be 4.
-    lotarea: Decimal
-    lotareaunitcode: str
-    lotholding: str
     postcode: str
     price: Decimal
-    price_m2: Decimal
-    quarteroftown: str
     realtygroup: RealtyGroup
-    realtyidentifier: str
     realty_itemgroup: ItemGroup
     realtytype: RealtyType
-    realtyoption: List[str]
-    rc_parkingspace_count: int
     roomcount: int
-    showingdate: date
-    showing_date2: date
-    street: str
     supplier_source_itemcode: str
-    text: List[Text]
     town: str
     tradetype: TradeType
-    zoningname: str
+    buildyear: Optional[int] = None
+    charges_parkingspace: Optional[Decimal] = None
+    chargesfinancebasemonth: Optional[Decimal] = None
+    chargesmaintbasemonth: Optional[Decimal] = None
+    chargeswater_period: Optional[str] = None
+    condition_name: Optional[Condition] = None
+    coordinate: Optional[List[Coordinate]] = None
+    currency_code: Optional[str] = None  # EUR is only supported currency atm.
+    energyclass: Optional[str] = None
+    extralink: Optional[List[ExtraLink]] = None
+    floors: Optional[int] = None
+    image: Optional[List[Image]] = None
+    livingaream2: Optional[Decimal] = None
+    loclvlid: Optional[int] = None  # If coordinate exists, this needs to be 1.
+    locsourceid: Optional[int] = None  # If coordinate exists, this needs to be 4.
+    lotarea: Optional[Decimal] = None
+    lotareaunitcode: Optional[str] = None
+    lotholding: Optional[str] = None
+    price_m2: Optional[Decimal] = None
+    quarteroftown: Optional[str] = None
+    realtyidentifier: Optional[str] = None
+    realtyoption: Optional[List[str]] = None
+    rc_parkingspace_count: Optional[int] = None
+    scontact: Optional[List[Scontact]] = None
+    showingdate: Optional[datetime] = None
+    showing_date2: Optional[datetime] = None
+    street: Optional[str] = None
+    text: Optional[List[Text]] = None
+    zoningname: Optional[str] = None
 
     class Meta:
         element_name = "item"
