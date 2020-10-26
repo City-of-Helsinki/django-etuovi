@@ -33,18 +33,19 @@ def create_value_property(
     value: Union[int, str, datetime, Decimal, Enum],
     root: etree.Element,
 ) -> None:
+    if not value:
+        return
+    elif isinstance(value, Enum):
+        value = value.value
+    elif isinstance(value, datetime):
+        value = value.strftime("%d.%m.%Y %H:%M")
     if key is None:
         property_element = etree.Element("property")
     else:
         property_element = etree.Element("property", name=key)
     value_element = etree.Element("value")
     property_element.append(value_element)
-    if isinstance(value, Enum):
-        value = value.value
-    elif isinstance(value, datetime):
-        value = value.strftime("%d.%m.%Y %H:%M")
-    # Don't want to stringify None.
-    value_element.text = str(value) if value is not None else value
+    value_element.text = str(value)
     root.append(property_element)
 
 
