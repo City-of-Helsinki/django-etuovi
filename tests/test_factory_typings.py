@@ -1,3 +1,4 @@
+from django_etuovi.utils.testing import check_dataclass_typing
 from tests.factories import (
     CoordinateFactory,
     ExtraLinkFactory,
@@ -5,7 +6,6 @@ from tests.factories import (
     ItemFactory,
     TextFactory,
 )
-from tests.utils import check_dataclass_typing
 
 
 def test_coordinate_factory_typing():

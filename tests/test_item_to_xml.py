@@ -4,7 +4,7 @@ from django.test import override_settings
 from lxml import etree
 
 from django_etuovi.etuovi import create_element_tree
-from django_etuovi.utils import object_to_xml_string
+from django_etuovi.utils.xml import object_to_xml_string
 from tests.factories import ItemFactory
 
 
