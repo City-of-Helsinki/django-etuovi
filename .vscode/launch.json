@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "pytest",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest"
+        }
+    ]
+}
