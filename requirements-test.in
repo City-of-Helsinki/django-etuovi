@@ -5,6 +5,7 @@ factory-boy
 flake8
 isort
 lxml
+pip-tools
 pytest
 pytest-cov
 pytest-django
