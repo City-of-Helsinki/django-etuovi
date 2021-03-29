@@ -33,11 +33,14 @@ def get_session() -> FTP:
     )
 
 
-def send_items(items: List[BaseClass]) -> None:
+def create_xml_file(items: List[BaseClass]) -> None:
     element_tree = ElementTree(create_element_tree(items))
     filename = get_filename()
     element_tree.write(filename, encoding="UTF-8", xml_declaration=True)
+    return filename
 
+
+def send_items(filename) -> None:
     session = get_session()
     session.storbinary("{}.temp".format(filename), open(filename, "rb"))
     session.rename("{}.temp".format(filename), filename)
