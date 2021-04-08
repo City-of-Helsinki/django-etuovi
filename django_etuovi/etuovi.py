@@ -33,7 +33,7 @@ def get_session() -> FTP:
     )
 
 
-def create_xml_file(items: List[BaseClass]) -> None:
+def create_xml_file(items: List[BaseClass]) -> str:
     element_tree = ElementTree(create_element_tree(items))
     filename = get_filename()
     element_tree.write(filename, encoding="UTF-8", xml_declaration=True)
