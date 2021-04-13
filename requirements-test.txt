@@ -40,7 +40,7 @@ iniconfig==1.0.1
     # via pytest
 isort==5.5.2
     # via -r requirements-test.in
-lxml==4.5.2
+lxml==4.6.3
     # via -r requirements-test.in
 mccabe==0.6.1
     # via flake8
