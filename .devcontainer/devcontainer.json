@@ -1,0 +1,28 @@
+{
+	"name": "Python 3",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": "..",
+		"args": {
+			"VARIANT": "3.8",
+			"INSTALL_NODE": "false",
+			"NODE_VERSION": "lts/*"
+		}
+	},
+	"settings": {
+		"python.formatting.autopep8Path": "/usr/local/py-utils/bin/autopep8",
+		"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+		"python.linting.enabled": true,
+		"python.linting.flake8Enabled": true,
+		"python.linting.flake8Path": "/usr/local/py-utils/bin/flake8",
+		"python.linting.pylintEnabled": false,
+		"python.pythonPath": "/usr/local/bin/python",
+		"python.testing.pytestEnabled": true,
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	"extensions": [
+		"ms-python.python"
+	],
+	"remoteUser": "vscode",
+	"postStartCommand": "pip install -e ."
+}

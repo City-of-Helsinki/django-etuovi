@@ -1,9 +1,9 @@
-import os
-
-from django.test import override_settings
+from os import path, remove
 from lxml import etree
 
-from django_etuovi.etuovi import create_element_tree
+from django.test import override_settings
+
+from django_etuovi.etuovi import create_element_tree, create_xml_file
 from django_etuovi.utils.xml import object_to_xml_string
 from tests.factories import ItemFactory
 
@@ -39,9 +39,27 @@ def test_all_item_attributes_in_xml_string():
 @override_settings(ETUOVI_TRANSFER_ID="test")
 def test_validate_xml_against_dtd():
     # DTD downloaded from http://img.cromet.fi/dtds/transferdata.dtd
-    path_to_current_file = os.path.realpath(__file__)
-    current_directory = os.path.dirname(path_to_current_file)
-    dtd = etree.DTD(os.path.join(current_directory, "test_data", "transferdata.dtd"))
+    path_to_current_file = path.realpath(__file__)
+    current_directory = path.dirname(path_to_current_file)
+    dtd = etree.DTD(path.join(current_directory, "test_data", "transferdata.dtd"))
     items = ItemFactory.create_batch(2)
 
     assert dtd.validate(create_element_tree(items))
+
+
+@override_settings(ETUOVI_TRANSFER_ID="test", ETUOVI_COMPANY_NAME="ATT")
+def test_xml_created(tmpdir):
+    items = ItemFactory.create_batch(1)
+    test_file = create_xml_file(items)
+    test_xml = open(test_file, "r")
+    test_xml = test_xml.read()
+    expected = ["<?xml version='1.0' encoding='UTF-8'?>",
+                '<transferData version="1.0">',
+                '<transferGroup type="all" name="test">',
+                '<item type="update" itemType="realty2" locale="FI" \
+dataGroup="DEFAULT">']
+
+    assert all(item in test_xml for item in expected)
+
+    if path.exists(test_file):
+        remove(test_file)
