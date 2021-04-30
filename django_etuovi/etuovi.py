@@ -42,6 +42,6 @@ def create_xml_file(items: List[BaseClass]) -> str:
 
 def send_items(filename) -> None:
     session = get_session()
-    session.storbinary("{}.temp".format(filename), open(filename, "rb"))
+    session.storbinary("STOR {}.temp".format(filename), open(filename, "rb"))
     session.rename("{}.temp".format(filename), filename)
     session.quit()
