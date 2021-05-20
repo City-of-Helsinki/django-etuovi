@@ -1,5 +1,6 @@
 import time
 from ftplib import FTP
+from os import path
 from typing import List
 from xml.etree.ElementTree import ElementTree
 
@@ -33,9 +34,10 @@ def get_session() -> FTP:
     )
 
 
-def create_xml_file(items: List[BaseClass]) -> str:
+def create_xml_file(items: List[BaseClass], file_path: str = ".") -> str:
     element_tree = ElementTree(create_element_tree(items))
     filename = get_filename()
+    filename = path.join(file_path, filename)
     element_tree.write(filename, encoding="UTF-8", xml_declaration=True)
     return filename
 

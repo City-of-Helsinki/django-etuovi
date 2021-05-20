@@ -1,7 +1,7 @@
-from os import path, remove
-from lxml import etree
+from os import path
 
 from django.test import override_settings
+from lxml import etree
 
 from django_etuovi.etuovi import create_element_tree, create_xml_file
 from django_etuovi.utils.xml import object_to_xml_string
@@ -48,9 +48,9 @@ def test_validate_xml_against_dtd():
 
 
 @override_settings(ETUOVI_TRANSFER_ID="test", ETUOVI_COMPANY_NAME="ATT")
-def test_xml_created(tmpdir):
+def test_xml_created(test_folder):
     items = ItemFactory.create_batch(1)
-    test_file = create_xml_file(items)
+    test_file = create_xml_file(items, test_folder)
     test_xml = open(test_file, "r")
     test_xml = test_xml.read()
     expected = ["<?xml version='1.0' encoding='UTF-8'?>",
@@ -60,6 +60,3 @@ def test_xml_created(tmpdir):
 dataGroup="DEFAULT">']
 
     assert all(item in test_xml for item in expected)
-
-    if path.exists(test_file):
-        remove(test_file)
