@@ -50,7 +50,7 @@ def test_validate_xml_against_dtd():
 @override_settings(ETUOVI_TRANSFER_ID="test", ETUOVI_COMPANY_NAME="ATT")
 def test_xml_created(test_folder):
     items = ItemFactory.create_batch(1)
-    test_folder, test_file = create_xml_file(items, test_folder)
+    test_file = create_xml_file(items, test_folder)
     test_xml = open(path.join(test_folder, test_file), "r")
     test_xml = test_xml.read()
     expected = ["<?xml version='1.0' encoding='UTF-8'?>",
