@@ -40,7 +40,7 @@ def create_xml_file(items: List[BaseClass], file_path: str = ".") -> Tuple[str, 
     filename = get_filename()
     element_tree.write(path.join(file_path, filename),
                        encoding="UTF-8", xml_declaration=True)
-    return file_path, filename
+    return filename
 
 
 def send_items(file_path, filename) -> None:
