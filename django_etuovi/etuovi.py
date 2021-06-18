@@ -1,5 +1,7 @@
 import time
 from ftplib import FTP
+from os import path
+from typing import Tuple
 from typing import List
 from xml.etree.ElementTree import ElementTree
 
@@ -33,12 +35,17 @@ def get_session() -> FTP:
     )
 
 
-def send_items(items: List[BaseClass]) -> None:
+def create_xml_file(items: List[BaseClass], file_path: str = ".") -> Tuple[str, str]:
     element_tree = ElementTree(create_element_tree(items))
     filename = get_filename()
-    element_tree.write(filename, encoding="UTF-8", xml_declaration=True)
+    element_tree.write(path.join(file_path, filename),
+                       encoding="UTF-8", xml_declaration=True)
+    return filename
 
+
+def send_items(file_path, filename) -> None:
     session = get_session()
-    session.storbinary("{}.temp".format(filename), open(filename, "rb"))
-    session.rename("{}.temp".format(filename), filename)
-    session.quit()
+    with open(path.join(file_path, filename), "rb") as f:
+        session.storbinary("STOR {}.temp".format(filename), f)
+        session.rename("{}.temp".format(filename), filename)
+        session.quit()

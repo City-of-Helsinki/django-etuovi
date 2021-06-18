@@ -17,4 +17,7 @@ def check_dataclass_typing(instance):
             type_origin for type_origin in _find_type_origin(field_def.type)
         )
         actual_value = getattr(instance, field_name)
-        assert isinstance(actual_value, actual_types)
+        assert isinstance(actual_value, actual_types), (
+            f"Value {actual_value} of field {field_name}"
+            f"is not an instance of {actual_types}"
+        )
