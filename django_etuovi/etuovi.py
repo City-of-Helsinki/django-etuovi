@@ -35,7 +35,7 @@ def get_session() -> FTP:
     )
 
 
-def create_xml_file(items: List[BaseClass], file_path: str = ".") -> Tuple[str, str]:
+def create_xml_file(items: List[BaseClass], file_path: str = ".") -> str:
     element_tree = ElementTree(create_element_tree(items))
     filename = get_filename()
     element_tree.write(path.join(file_path, filename),
