@@ -53,10 +53,12 @@ def test_xml_created(test_folder):
     test_file = create_xml_file(items, test_folder)
     test_xml = open(path.join(test_folder, test_file), "r")
     test_xml = test_xml.read()
-    expected = ["<?xml version='1.0' encoding='UTF-8'?>",
-                '<transferData version="1.0">',
-                '<transferGroup type="all" name="test">',
-                '<item type="update" itemType="realty2" locale="FI" \
-dataGroup="DEFAULT">']
+    expected = [
+        "<?xml version='1.0' encoding='UTF-8'?>",
+        '<transferData version="1.0">',
+        '<transferGroup type="all" name="test">',
+        '<item type="update" itemType="realty2" locale="FI" \
+dataGroup="DEFAULT">',
+    ]
 
     assert all(item in test_xml for item in expected)
