@@ -6,6 +6,8 @@
 #
 --index-url https://pypi.python.org/simple
 
+asgiref==3.4.1
+    # via django
 attrs==21.2.0
     # via pytest
 backports.entry-points-selectable==1.1.0
@@ -22,7 +24,7 @@ coverage==5.5
     # via pytest-cov
 distlib==0.3.2
     # via virtualenv
-django==2.2.24
+django==3.2.6
     # via -r requirements-test.in
 factory-boy==3.2.0
     # via -r requirements-test.in
