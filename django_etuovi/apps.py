@@ -5,3 +5,4 @@ from django.utils.translation import gettext_lazy as _
 class EtuoviConfig(AppConfig):
     name = "django_etuovi"
     verbose_name = _("Etuovi")
+    default_auto_field = 'django.db.models.BigAutoField'
