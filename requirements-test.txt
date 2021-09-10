@@ -4,8 +4,6 @@
 #
 #    pip-compile requirements-test.in
 #
---index-url https://pypi.python.org/simple
-
 asgiref==3.4.1
     # via django
 attrs==21.2.0
@@ -93,7 +91,7 @@ six==1.16.0
     # via
     #   python-dateutil
     #   virtualenv
-sqlparse==0.4.1
+sqlparse==0.4.2
     # via django
 text-unidecode==1.3
     # via faker
