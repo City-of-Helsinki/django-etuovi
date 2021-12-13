@@ -4,8 +4,6 @@
 #
 #    pip-compile requirements-test.in
 #
---index-url https://pypi.python.org/simple
-
 asgiref==3.4.1
     # via django
 attrs==21.2.0
@@ -40,7 +38,7 @@ iniconfig==1.1.1
     # via pytest
 isort==5.9.3
     # via -r requirements-test.in
-lxml==4.6.3
+lxml==4.6.5
     # via -r requirements-test.in
 mccabe==0.6.1
     # via flake8
@@ -106,7 +104,7 @@ tomli==1.2.1
     # via
     #   black
     #   pep517
-typing-extensions==3.10.0.1
+typing-extensions==4.0.1
     # via black
 virtualenv==20.7.2
     # via pre-commit
