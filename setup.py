@@ -24,7 +24,7 @@ setup(
     author_email="dev@hel.fi",
     install_requires=[
         "Django~=3.2.6",
-        "lxml~=4.6.3",
+        "lxml>=4.6.3,<4.10.0",
     ],
     setup_requires=["pytest-runner"],
     tests_require=["pytest", "pytest-django"],
