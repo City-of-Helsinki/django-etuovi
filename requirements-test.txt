@@ -4,13 +4,11 @@
 #
 #    pip-compile requirements-test.in
 #
---index-url https://pypi.python.org/simple
-
 asgiref==3.4.1
     # via django
 attrs==21.2.0
     # via pytest
-backports.entry-points-selectable==1.1.0
+backports-entry-points-selectable==1.1.0
     # via virtualenv
 black==21.8b0
     # via -r requirements-test.in
@@ -110,7 +108,7 @@ typing-extensions==3.10.0.1
     # via black
 virtualenv==20.7.2
     # via pre-commit
-wheel==0.37.0
+wheel==0.38.1
     # via pip-tools
 
 # The following packages are considered to be unsafe in a requirements file:
