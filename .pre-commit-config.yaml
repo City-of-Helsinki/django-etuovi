@@ -10,16 +10,11 @@ repos:
     -   id: check-yaml
     -   id: end-of-file-fixer
     -   id: trailing-whitespace
--   repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.5.2
-    hooks:
-    -   id: isort
 -   repo: https://github.com/psf/black
-    rev: 20.8b1
+    rev: 23.9.1
     hooks:
     -   id: black
--   repo: https://gitlab.com/pycqa/flake8
-    rev: 3.8.3
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.292
     hooks:
-    -   id: flake8
-        exclude: migrations|snapshots
+    -   id: ruff

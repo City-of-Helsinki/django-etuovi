@@ -1,11 +1,10 @@
 black
 Django
 factory-boy
-flake8
-isort
 lxml
 pip-tools
 pre-commit
 pytest
 pytest-cov
 pytest-django
+ruff
