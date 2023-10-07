@@ -23,8 +23,8 @@ setup(
     author="City of Helsinki",
     author_email="dev@hel.fi",
     install_requires=[
-        "Django~=3.2.6",
-        "lxml~=4.6.3",
+        "Django>=3.2",
+        "lxml>=4",
     ],
     setup_requires=["pytest-runner"],
     tests_require=["pytest", "pytest-django"],
