@@ -5,7 +5,7 @@ A Django wrapper around Etuovi API
 
 This project uses
 [`black`](https://github.com/psf/black),
-[`flake8`](https://gitlab.com/pycqa/flake8) and
+[`ruff`](https://github.com/astral-sh/ruff) and
 [`isort`](https://github.com/PyCQA/isort)
 for code formatting and quality checking. Project follows the basic
 black config, without any modifications.
