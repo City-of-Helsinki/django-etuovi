@@ -33,5 +33,3 @@ jobs:
         run: pytest -v
       - name: Lint with flake8
         run: ruff check .
-      - name: Check imports with isort
-        run: isort --check-only --diff .

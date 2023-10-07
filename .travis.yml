@@ -26,5 +26,4 @@ matrix:
       install: pip install -r requirements-test.txt
       script:
         - black --check .
-        - flake8
-        - isort . -c
+        - ruff check .

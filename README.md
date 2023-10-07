@@ -4,9 +4,8 @@ A Django wrapper around Etuovi API
 ## Code format
 
 This project uses
-[`black`](https://github.com/psf/black),
-[`ruff`](https://github.com/astral-sh/ruff) and
-[`isort`](https://github.com/PyCQA/isort)
+[`black`](https://github.com/psf/black) and
+[`ruff`](https://github.com/astral-sh/ruff)
 for code formatting and quality checking. Project follows the basic
 black config, without any modifications.
 

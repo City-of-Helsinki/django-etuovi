@@ -1,7 +1,6 @@
 black
 Django
 factory-boy
-isort
 lxml
 pip-tools
 pre-commit
