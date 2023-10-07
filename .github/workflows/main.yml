@@ -1,0 +1,37 @@
+name: Tests and quality checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.8", "3.9", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python ${{matrix.python}}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{matrix.python}}
+          cache: 'pip'
+          cache-dependency-path: |
+            requirements*.txt
+            setup.py
+      - name: Install dependencies
+        run: |
+          pip install -U pip
+          pip install -r requirements-test.txt
+          pip install .
+      - name: Check style with black
+        run: black --check .
+      - name: Test with pytest
+        run: pytest -v
+      - name: Lint with flake8
+        run: flake8
+      - name: Check imports with isort
+        run: isort --check-only --diff .
