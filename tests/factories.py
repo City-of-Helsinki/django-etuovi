@@ -106,9 +106,7 @@ class ItemFactory(factory.Factory):
     realtyoption = factory.List([fuzzy.FuzzyText() for _ in range(2)])
     rc_parkingspace_count = fuzzy.FuzzyInteger(0, 9999999999)
     roomcount = fuzzy.FuzzyInteger(0, 9999999999)
-    roomnumber = fuzzy.FuzzyText(
-        length=3, chars=string.ascii_letters + string.digits
-    )
+    roomnumber = fuzzy.FuzzyText(length=3, chars=string.ascii_letters + string.digits)
     scontact = factory.List([factory.SubFactory(ScontactFactory) for _ in range(2)])
     showingdate = fuzzy.FuzzyDateTime(timezone.now())
     showing_date2 = fuzzy.FuzzyDateTime(timezone.now())
