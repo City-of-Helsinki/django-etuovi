@@ -93,6 +93,7 @@ class Item(BaseClass):
     realty_itemgroup: ItemGroup
     realtytype: RealtyType
     roomcount: int
+    roomnumber: str
     supplier_source_itemcode: str
     town: str
     tradetype: TradeType
