@@ -1,6 +1,9 @@
 import string
+
 import factory
 from django.utils import timezone
+from factory import fuzzy
+
 from django_etuovi.enums import (
     Condition,
     Country,
@@ -15,7 +18,6 @@ from django_etuovi.enums import (
     TradeType,
 )
 from django_etuovi.items import Coordinate, ExtraLink, Image, Item, Scontact, Text
-from factory import fuzzy
 
 
 class ImageFactory(factory.Factory):
